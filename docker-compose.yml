@@ -23,8 +23,18 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - springboot-mysql-network
+  app_jenkins:
+    image: jenkins/jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    networks:
+      - springboot-mysql-network
 volumes:
   mysql-data:
+  jenkins_home:
 networks:
   springboot-mysql-network:
     name: springboot-mysql-network
