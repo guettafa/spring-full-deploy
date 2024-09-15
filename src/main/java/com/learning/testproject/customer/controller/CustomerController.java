@@ -7,14 +7,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// test
-
 @RestController
 @RequestMapping("/api/v1/customers")
 @RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
+
+    @GetMapping("/")
+    public ResponseEntity<?> getAll() {
+        try {
+             return new ResponseEntity<>(
+                     customerService.getAllCustomers(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/{username}")
     public ResponseEntity<?> getByUsername(@PathVariable String username) {

@@ -9,16 +9,24 @@ import com.learning.testproject.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
+    public Set<CustomerInfo> getAllCustomers() {
+        return customerRepository.findAll().stream().map(
+                CustomerInfo::fromCustomer
+        ).collect(Collectors.toSet());
+    }
+
     public CustomerInfo getCustomerByUsername(String username) {
         Customer customer = customerRepository.findByUsername(username)
                 .orElseThrow(CustomerNotFound::new);
-
         return CustomerInfo.fromCustomer(customer);
     }
 
