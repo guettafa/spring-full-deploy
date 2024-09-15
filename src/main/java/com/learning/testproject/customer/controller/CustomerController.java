@@ -14,6 +14,8 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
+
+// added test comment for jenkins github webhook
     @GetMapping("/")
     public ResponseEntity<?> getAll() {
         try {
