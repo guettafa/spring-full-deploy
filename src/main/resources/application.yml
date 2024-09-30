@@ -1,13 +1,5 @@
+spring:
+  profiles:
+    active: dev
 server:
   port: 9091
-spring:
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    show-sql: true
-  sql:
-    init:
-      mode: always
-  output:
-    ansi:
-      enabled: always

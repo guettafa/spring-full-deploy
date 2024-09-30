@@ -1,5 +1,6 @@
 version: '3.7'
 services:
+  # Spring Boot application
   app:
     build: .
     ports:
@@ -12,6 +13,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
     networks:
       - springboot-mysql-network
+  # Mysql
   mysqldb:
     image: mysql:8.0.39
     ports:
@@ -23,6 +25,7 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - springboot-mysql-network
+  # Jenkins
   app_jenkins:
     image: jenkins/jenkins
     ports:

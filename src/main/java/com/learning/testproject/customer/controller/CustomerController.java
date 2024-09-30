@@ -14,13 +14,13 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-
-// added test comment for jenkins github webhook
     @GetMapping("/")
     public ResponseEntity<?> getAll() {
         try {
              return new ResponseEntity<>(
-                     customerService.getAllCustomers(), HttpStatus.OK);
+                     customerService.getAllCustomers(),
+                     HttpStatus.OK
+             );
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
