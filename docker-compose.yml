@@ -35,9 +35,20 @@ services:
       - jenkins_home:/var/jenkins_home
     networks:
       - springboot-mysql-network
+  # Nexus Repository
+  nexus-repo:
+    image: sonatype/nexus
+    ports:
+      - 8081:8081
+      - 8085:8085
+    volumes:
+      - nexus-data:/sonatype-work"
+    networks:
+      - springboot-mysql-network
 volumes:
   mysql-data:
   jenkins_home:
+  nexus-data: {}
 networks:
   springboot-mysql-network:
     name: springboot-mysql-network
